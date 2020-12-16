@@ -7,7 +7,7 @@
 ```
 # Installing Docker-ce 17.03 through package
 # Make sure kernel version is compatible with docker-runc
-# older kernel version: 3.x used in this tutorial. Newer kernel version: 5.x need patched criu to work at this point of writing
+# older kernel version: 3.x used in this tutorial. Newer kernel version: 5.x need patched criu to work at this point of writing.
 
 $ wget https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/docker-ce_17.03.0~ce-0~ubuntu-xenial_amd64.deb
 $ sudo dpkg -i docker-ce_17.03.0~ce-0~ubuntu-xenial_amd64.deb
@@ -22,7 +22,8 @@ $ sudo nano /etc/docker/daemon.json
 
 or
 
-sudo dockerd --experimental
+$ systemctl stop docker
+$ sudo dockerd --experimental
 ```
 
 ```sh
@@ -43,6 +44,7 @@ $ sudo make
 $ sudo make install
 
 # Then check if your criu works well
+# Note that newer version of criu might fail this. We would need to use patched criu for it to work in this regard.
 $ sudo criu check
 $ sudo criu check --all
 # You will see 'looks good'
@@ -53,26 +55,26 @@ $ sudo criu check --all
 1. On original host(first directory if on local single machine)
 
 ```sh
-$ docker run -d --name looper2 --security-opt seccomp:unconfined busybox \
+$ sudo docker run -d --name looper2 --security-opt seccomp:unconfined busybox \
          /bin/sh -c 'i=0; while true; do echo $i; i=$(expr $i + 1); sleep 1; done'
 
 # wait a few seconds to give the container an opportunity to print a few lines, then
-$ docker checkpoint create --checkpoint-dir=~/Container-Checkpoints/ looper2 checkpoint2
+$ sudo docker checkpoint create --checkpoint-dir=~/Container-Checkpoints/ looper2 checkpoint2
 
 # check your container & print log file
-$ docker ps
-$ docker logs looper2
+$ sudo docker ps
+$ sudo docker logs looper2
 ```
 
 2. On new host(second directory or nfs or scp file directory)
 
 ```sh
-$ docker create --name looper-clone --security-opt seccomp:unconfined busybox \
+$ sudo docker create --name looper-clone --security-opt seccomp:unconfined busybox \
          /bin/sh -c 'i=0; while true; do echo $i; i=$(expr $i + 1); sleep 1; done'
 
-$ docker start --checkpoint-dir=~/Container-Checkpoints/ --checkpoint=checkpoint2 looper-clone
+$ sudo docker start --checkpoint-dir=~/Container-Checkpoints/ --checkpoint=checkpoint2 looper-clone
 
 # check your container
-$ docekr ps
-$ docker logs looper-clone
+$ sudo docker ps
+$ sudo docker logs looper-clone
 ```
