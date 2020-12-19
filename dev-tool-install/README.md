@@ -20,3 +20,9 @@ ssh-add ~/.ssh/id_rsa
 cd config
 ansible-playbook -i hosts playbook.yaml
 ```
+
+## Ping
+
+```sh
+ansible -i hosts -m ping all
+```

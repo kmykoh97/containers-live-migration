@@ -1,0 +1,7 @@
+---
+- hosts: vpn
+  vars_files:
+    - "vars/ubuntu.yaml"
+  roles:
+  - strongswan
+  - pam-limits
