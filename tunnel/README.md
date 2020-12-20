@@ -25,3 +25,4 @@ ansible-playbook -i hosts playbook.yaml
 
 - https://networklore.com/ansible-getting-started/
 - https://github.com/torian/ansible-role-strongswan
+- https://docs.ansible.com/ansible/latest/collections/community/general/pam_limits_module.html

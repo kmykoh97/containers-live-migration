@@ -1,0 +1,10 @@
+---
+# todo: add archived container image's link
+
+- name: Extract MySQL image
+  unarchive: src= dest=/home/ubuntu remote_src=yes
+  become: true
+
+- name: Extract WordPress image
+  unarchive: src= dest=/home/ubuntu remote_src=yes
+  become: true

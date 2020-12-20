@@ -1,0 +1,25 @@
+---
+- name: Gather facts for every host
+  hosts: all
+
+- hosts: "{{ target | default('target') }}"
+  roles:
+  - docker
+  - criu
+  - route
+  - namespace
+  - pam-limits
+  - memcached
+  - stack
+  - HAproxy
+
+- hosts: "{{ source | default('source') }}"
+  roles:
+  - docker
+  - criu
+  - route
+  - namespace
+  - pam-limits
+  - memcached
+  - stack
+  - HAproxy

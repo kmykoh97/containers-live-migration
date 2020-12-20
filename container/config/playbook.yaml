@@ -1,0 +1,9 @@
+---
+- hosts: host
+  roles:
+  - copy-container
+
+- hosts: "{{ source | default('source') }}"
+  roles:
+  # - copy-container
+  - start-container
