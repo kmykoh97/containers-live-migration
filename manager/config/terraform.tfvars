@@ -1,5 +1,0 @@
-key_name = "live-migration-keypair"
-public_key_path = "~/.ssh/id_rsa.pub"
-private_key_path = "~/.ssh/id_rsa"
-gcp_project_id = "imposing-volt-294910"
-gcp_credentials_path = "gcp.json"
