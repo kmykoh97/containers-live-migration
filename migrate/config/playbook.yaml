@@ -1,0 +1,8 @@
+---
+- hosts: "{{ target | default('target') }}"
+  roles:
+  - target
+
+- hosts: "{{ source | default('source') }}"
+  roles:
+  - source

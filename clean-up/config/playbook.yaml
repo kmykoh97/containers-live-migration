@@ -1,0 +1,9 @@
+---
+- hosts: host
+  roles:
+  - killprocesses
+
+- hosts: "{{ source | default('source') }}"
+  roles:
+  - haproxy
+  - memcached

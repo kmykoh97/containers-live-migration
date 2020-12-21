@@ -1,0 +1,16 @@
+---
+- name: Create target script
+  copy: src=target.py dest=/home/ubuntu/target.py owner=root group=root mode=0755
+  become: true
+
+- name: Start rsync daemon
+  command: rsync --daemon
+  become: true
+
+- name: Execute migration target script
+  shell: "./target.py {{ hostvars[source].private_address }} >> target-log"
+  args:
+    chdir: /home/ubuntu
+  become: true
+  async: 2629800
+  poll: 0
