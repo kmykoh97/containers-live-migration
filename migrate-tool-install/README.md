@@ -18,5 +18,5 @@ ssh-add ~/.ssh/id_rsa
 
 # start running Ansible script, -e to provide additional parameters
 cd config
-ansible-playbook -i hosts -e source=8.9.10.11 -e target=104.215.155.205 playbook.yaml
+ansible-playbook -i hosts -e source=54.169.159.117 -e target=34.87.16.235 playbook.yaml
 ```
