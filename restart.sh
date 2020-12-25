@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export ROOTDIR="$PWD"
 
 # Finishing touches
@@ -13,6 +15,16 @@ echo $secondhostip
 ## run
 ansible-playbook -i hosts -e source=${firsthostip} playbook.yaml
 sleep 10s
+
+# Setting up containers
+cd $ROOTDIR/container/config
+cp $ROOTDIR/manager/config/hosts ./hosts
+
+## run
+ansible-playbook -i hosts -e source=${firsthostip} playbook.yaml
+sleep 20s
+
+# after this script, http://$firsthostip:80 would be the wordpress application
 
 # Destroy everything
 # cd $ROOTDIR/manager/config

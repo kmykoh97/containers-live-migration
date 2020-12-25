@@ -7,7 +7,7 @@
 ```
 # Installing Docker-ce 17.03 through package
 # Make sure kernel version is compatible with docker-runc
-# older kernel version: 3.x used in this tutorial. Newer kernel version: 5.x need patched criu to work at this point of writing.
+# older kernel version: 4.x used in this tutorial. Newer kernel version: 5.x need patched criu to work at this point of writing.
 
 $ wget https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/docker-ce_17.03.0~ce-0~ubuntu-xenial_amd64.deb
 $ sudo dpkg -i docker-ce_17.03.0~ce-0~ubuntu-xenial_amd64.deb
@@ -78,3 +78,11 @@ $ sudo docker start --checkpoint-dir=~/Container-Checkpoints/ --checkpoint=check
 $ sudo docker ps
 $ sudo docker logs looper-clone
 ```
+
+# side note
+
+Confirmed working on:
+- Ubuntu 16.04.7 LTS
+- 4.4.0-1117
+- criu 2.6
+- docker 17.03.0-ce

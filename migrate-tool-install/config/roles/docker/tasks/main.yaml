@@ -19,11 +19,17 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
   become: true
 
-- name: Install Docker
+- name: Install Docker CE
   apt:
     update_cache: true
-    name: docker-ce
+    name: docker-ce=5:18.09.0~3-0~ubuntu-bionic
   become: true
+
+# - name: Install Docker CLI
+#   apt:
+#     update_cache: true
+#     name: docker-ce-cli=5:18.09.0~3-0~ubuntu-bionic
+#   become: true
 
 - name: Configure docker/daemon.json
   copy: src=daemon.json dest=/etc/docker/daemon.json owner=root group=root mode=0644

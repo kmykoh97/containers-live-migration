@@ -1,16 +1,25 @@
 ---
 - name: Create migrate-source script
-  copy: src=source.py dest=/home/ubuntu/migrate-source.py owner=root group=root mode=0755
+  copy: src=source.py dest=/home/ubuntu/source.py owner=root group=root mode=0755
   become: true
 
+- name: Pause for 5 seconds to build cache
+  pause:
+    seconds: 5
+  
+# /run/runc/mysql/criu.work/dump.log
 - name: Migrate MySQL and WordPress
-  command: ".source.py mysql,wordpress {{ hostvars[target].private_address }} {{ precopy | default('false') }} {{ postcopy | default('false') }} 8027"
+  command: "python ./source.py mysql,wordpress {{ hostvars[target].private_address }} {{ precopy | default('false') }} {{ postcopy | default('false') }} 8027"
   args:
     chdir: /home/ubuntu
   environment:
     PYTHONUNBUFFERED: 1
   become: true
   register: migration_result
+
+- name: Pause for 10 seconds to build cache
+  pause:
+    seconds: 10
 
 - name: Wait for target ({{ hostvars[target].private_address }}) to come up
   command: "curl -m 2 --silent {{ hostvars[target].private_address }}"
@@ -19,6 +28,7 @@
   retries: 20
   delay: 1
   changed_when: false
+  # warn: false
 
 - name: HAProxy - Disable redir
   shell: echo "disable server back1/redir" | socat unix-connect:/var/run/haproxy/admin.sock stdio

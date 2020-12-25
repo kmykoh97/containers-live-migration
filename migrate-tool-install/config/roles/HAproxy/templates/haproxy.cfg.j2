@@ -50,7 +50,7 @@ frontend http-default
 	stats enable
 	stats uri /haproxy
 	stats hide-version
-	stats auth criu:criu12345
+	stats auth root:root
 	stats show-node
 	
 backend back1
@@ -66,3 +66,12 @@ backend back1
 	server target {{ hostvars[host].private_address }}:80 check
 	{% endif %}
 	{% endfor %}
+
+#listen stats # Define a listen section called "stats"
+#  	bind :9000 # Listen on localhost:9000
+#  	mode http
+#  	stats enable  # Enable stats page
+#  	stats hide-version  # Hide HAProxy version
+#  	stats realm Haproxy\ Statistics  # Title text for popup window
+#  	stats uri /haproxy_stats  # Stats URI
+#  	stats auth Username:Password  # Authentication credentials

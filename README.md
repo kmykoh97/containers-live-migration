@@ -10,9 +10,13 @@ Live migration is the movement of a system or application from one physical host
 
 - [x] [local test migration]()
 - [x] [Infrastructure set up and management]()
-- [x] [Installing development tools]()
+- [x] [Install development tools]()
 - [ ] [Setting up VPN secure tunnel]()
-- [ ] [Installing migration tools]()
+- [ ] [Install migration tools]()
 - [ ] [Setting up containers]()
 - [ ] [Begin migration]()
 - [ ] [Finishing touches]()
+
+## Run
+
+Script `run.sh` provided
