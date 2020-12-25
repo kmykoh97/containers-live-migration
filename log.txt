@@ -1,0 +1,78 @@
+ Wait for ack 76 on daemon socket
+pie: 1: __fetched msg: 76 0 0
+pie: 1: __sent ack msg: 76 76 0
+pie: 1: Daemon waits for command
+(00.412859) Fetched ack: 76 76 0
+(00.412862) cg: Dumping cgroups for 16855
+(00.412906) cg:  `- New css ID 2
+(00.412910) cg:     `- [] -> [/user.slice/user-1000.slice/session-4.scope] [0]
+(00.412911) cg:     `- [blkio] -> [/user.slice] [0]
+(00.412912) cg:     `- [cpu,cpuacct] -> [/user.slice] [0]
+(00.412913) cg:     `- [cpuset] -> [/mysql] [0]
+(00.412914) cg:     `- [devices] -> [/user.slice] [0]
+(00.412915) cg:     `- [freezer] -> [/mysql] [0]
+(00.412917) cg:     `- [hugetlb] -> [/mysql] [0]
+(00.412918) cg:     `- [memory] -> [/user.slice] [0]
+(00.412919) cg:     `- [name=systemd] -> [/user.slice/user-1000.slice/session-4.scope/mysql] [0]
+(00.412920) cg:     `- [net_cls,net_prio] -> [/mysql] [0]
+(00.412921) cg:     `- [perf_event] -> [/mysql] [0]
+(00.412922) cg:     `- [pids] -> [/user.slice/user-1000.slice/session-4.scope] [0]
+(00.412923) cg:     `- [rdma] -> [/] [0]
+(00.414760) Error (criu/cgroup.c:621): cg: Unable to mount : Invalid argument
+(00.414786) Error (criu/cgroup.c:713): cg: failed walking /proc/self/fd/-1/user.slice/user-1000.slice/session-4.scope for empty cgroups: No such file or directory
+(00.414789) ----------------------------------------
+(00.414791) Error (criu/cr-dump.c:1390): Dump core (pid: 16855) failed with -1
+(00.414843) Waiting for 16855 to trap
+(00.414867) Daemon 16855 exited trapping
+(00.414875) Sent msg to daemon 3 0 0
+(00.414881) Force no-breakpoints restore
+(00.414903) 16855 was trapped
+(00.414906) 16855 (native) is going to execute the syscall 45, required is 15
+(00.414927) 16855 was trapped
+(00.414935) `- Expecting exit
+(00.414955) 16855 was trapped
+(00.414958) 16855 (native) is going to execute the syscall 186, required is 15
+(00.414975) 16855 was trapped
+(00.414977) `- Expecting exit
+(00.414995) 16855 was trapped
+(00.414999) 16855 (native) is going to execute the syscall 1, required is 15
+pie: 1: __fetched msg: 3 0 0
+(00.415180) 16855 was trapped
+(00.415183) `- Expecting exit
+(00.415212) 16855 was trapped
+(00.415215) 16855 (native) is going to execute the syscall 186, required is 15
+(00.415234) 16855 was trapped
+(00.415237) `- Expecting exit
+(00.415255) 16855 was trapped
+(00.415258) 16855 (native) is going to execute the syscall 186, required is 15
+(00.415275) 16855 was trapped
+(00.415277) `- Expecting exit
+(00.415295) 16855 was trapped
+(00.415298) 16855 (native) is going to execute the syscall 1, required is 15
+pie: 1: 1: new_sp=0x7f9eb4feff48 ip 0x7f9edad018bd
+(00.415318) 16855 was trapped
+(00.415321) `- Expecting exit
+(00.415295) 16855 was trapped
+(00.415298) 16855 (native) is going to execute the syscall 1, required is 15
+pie: 1: 1: new_sp=0x7f9eb4feff48 ip 0x7f9edad018bd
+(00.415318) 16855 was trapped
+(00.415321) `- Expecting exit
+(00.415339) 16855 was trapped
+(00.415342) 16855 (native) is going to execute the syscall 3, required is 15
+(00.415366) 16855 was trapped
+(00.415368) `- Expecting exit
+(00.415385) 16855 was trapped
+(00.415388) 16855 (native) is going to execute the syscall 3, required is 15
+(00.415407) 16855 was trapped
+(00.415410) `- Expecting exit
+(00.415428) 16855 was trapped
+(00.415431) 16855 (native) is going to execute the syscall 15, required is 15
+(00.415449) 16855 was stopped
+(00.415611) Unlock network
+(00.415613) Running network-unlock scripts
+(00.415615)     RPC
+iptables-restore: invalid option -- 'w'
+ip6tables-restore: invalid option -- 'w'
+(00.419162) Unfreezing tasks into 1
+(00.419172)     Unseizing 16855 into 1
+(00.419386) Error (criu/cr-dump.c:1768): Dumping FAILED.
