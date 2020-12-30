@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export ROOTDIR="$PWD"
 
 # Begin migration
@@ -11,6 +13,5 @@ echo $firsthostip
 echo $secondhostip
 
 ## run
-ansible-playbook -i hosts -e source=${firsthostip} -e target=${secondhostip} playbook.yaml
+ansible-playbook -i hosts -e source=${firsthostip} -e target=${secondhostip} -e precopy=true playbook.yaml
 sleep 15s
-

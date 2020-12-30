@@ -1,3 +1,4 @@
+  
 # {{ ansible_managed }}
 
 global
@@ -21,7 +22,7 @@ global
 	#  https://mozilla.github.io/server-side-tls/ssl-config-generator/?server=haproxy
 	ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM:RSA+AES:!aNULL:!MD5:!DSS
 	ssl-default-bind-options no-sslv3
-	maxconn 100000
+	maxconn 4000
 
 defaults
 	log	global
@@ -29,11 +30,11 @@ defaults
 	option	httplog
 	option	dontlognull
 	option 	redispatch
-        timeout connect 10m
-        timeout client  10m
-        timeout server  10m
-	timeout queue   10m
-	timeout check	5s
+    timeout connect 300000
+    timeout client  300000
+    timeout server  300000
+	timeout queue   300000
+	timeout check	300000
 	errorfile 400 /etc/haproxy/errors/400.http
 	errorfile 403 /etc/haproxy/errors/403.http
 	errorfile 408 /etc/haproxy/errors/408.http
@@ -46,23 +47,32 @@ frontend http-default
 	bind *:80
 	mode http
 	maxconn 100000
-	default_backend back1
+	default_backend www
 	stats enable
 	stats uri /haproxy
 	stats hide-version
-	stats auth criu:criu12345
+	stats auth root:root
 	stats show-node
 	
-backend back1
+backend www
 	balance roundrobin
 	option forwardfor
 	option httpchk HEAD / HTTP/1.1\r\nHost:\ a.com
 	default-server inter 10s fall 6 rise 1
 	server redir 127.0.0.1:12345 backup disabled maxconn 20 # dummy server
-	server source 10.200.1.5:80 check # wordpress application
+	server source 10.200.1.5:80 maxconn 15 check # wordpress application
 	{% for host in list_other_hosts %}
 	{% if not ansible_hostname == hostvars[host].ansible_hostname %}
 	# Host added by Ansible
 	server target {{ hostvars[host].private_address }}:80 check
 	{% endif %}
 	{% endfor %}
+
+#listen stats # Define a listen section called "stats"
+#  	bind :9000 # Listen on localhost:9000
+#  	mode http
+#  	stats enable  # Enable stats page
+#  	stats hide-version  # Hide HAProxy version
+#  	stats realm Haproxy\ Statistics  # Title text for popup window
+#  	stats uri /haproxy_stats  # Stats URI
+#  	stats auth Username:Password  # Authentication credentials

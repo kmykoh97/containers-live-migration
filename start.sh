@@ -20,7 +20,7 @@ firsthostip="$(echo `ansible host -i hosts --list-hosts | tail -n +2 | sed -n '1
 secondhostip="$(echo `ansible host -i hosts --list-hosts | tail -n +2 | sed -n '2 p'`)"
 echo $firsthostip
 echo $secondhostip
-sleep 30s # wait for instances boot
+sleep 32s # wait for instances boot
 
 # Install development tools
 cd $ROOTDIR/dev-tool-install/config
@@ -32,7 +32,7 @@ sleep 5s
 
 ## run
 ansible-playbook -i hosts playbook.yaml
-sleep 10s
+sleep 12s
 
 # Setting up VPN secure tunnel
 cd $ROOTDIR/tunnel/config
@@ -40,7 +40,7 @@ cp $ROOTDIR/manager/config/hosts ./hosts
 
 ## run
 ansible-playbook -i hosts playbook.yaml
-sleep 10s
+sleep 17s
 
 # Install migration tools
 cd $ROOTDIR/migrate-tool-install/config
@@ -48,7 +48,7 @@ cp $ROOTDIR/manager/config/hosts ./hosts
 
 ## run
 ansible-playbook -i hosts -e source=${firsthostip} -e target=${secondhostip} playbook.yaml
-sleep 10s
+sleep 15s
 
 # Setting up containers
 cd $ROOTDIR/container/config

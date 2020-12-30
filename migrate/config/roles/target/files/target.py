@@ -109,3 +109,17 @@ while 1:
   start_new_thread(clientthread, (conn, str(addr[0]),))
 
 s.close()
+
+# # after all the steps, we would need to reorient traffic by restarting
+# cmd = "runc kill mysql"
+# p = subprocess.Popen(cmd, shell=True)
+# ret = p.wait()
+# cmd = "runc kill wordpress"
+# p = subprocess.Popen(cmd, shell=True)
+# ret = p.wait()
+# cmd = "runc delete mysql"
+# p = subprocess.Popen(cmd, shell=True)
+# ret = p.wait()
+# cmd = "runc delete wordpress"
+# p = subprocess.Popen(cmd, shell=True)
+# ret = p.wait()

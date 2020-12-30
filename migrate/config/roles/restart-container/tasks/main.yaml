@@ -1,0 +1,26 @@
+---
+- name: container restart mysql
+  shell: "{{item}}"
+  args:
+    chdir: /home/ubuntu/mysql
+  with_items:
+    - runc kill mysql KILL
+    - sleep 1s
+    - runc delete mysql
+    - sleep 1s
+    - "runc run -d mysql &>/dev/null </dev/null"
+  ignore_errors: true
+  become: true
+
+- name: container restart wordpress
+  shell: "{{item}}"
+  args:
+    chdir: /home/ubuntu/wordpress
+  with_items:
+    - runc kill wordpress KILL
+    - sleep 1s
+    - runc delete wordpress
+    - sleep 1s
+    - "runc run -d wordpress &>/dev/null </dev/null"
+  ignore_errors: true
+  become: true

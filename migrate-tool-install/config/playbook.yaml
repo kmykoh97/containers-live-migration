@@ -7,11 +7,13 @@
   - docker
   - criu
   - route
+  - rsync-config
   - namespace
   - pam-limits
   - memcached
   - stack
   - HAproxy
+
 
 - hosts: "{{ source | default('source') }}"
   roles:

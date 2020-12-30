@@ -6,3 +6,11 @@
 - hosts: "{{ source | default('source') }}"
   roles:
   - source
+
+- hosts: "{{ target | default('target') }}"
+  roles:
+  - restart-container # redundant but necessary until runc solves its bug in ubuntu
+
+- hosts: "{{ source | default('source') }}"
+  roles:
+  - check-container # redundant but necessary until runc solves its bug in ubuntu

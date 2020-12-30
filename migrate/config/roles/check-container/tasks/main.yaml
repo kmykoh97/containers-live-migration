@@ -1,0 +1,14 @@
+---
+
+- name: Wait for target ({{ hostvars[target].public_address }}) to come up
+  command: "curl -m 2 --silent {{ hostvars[target].public_address }}"
+  # register: result
+  until: result.stdout.find("WordPress") != -1
+  retries: 20
+  delay: 2
+  changed_when: false
+  # warn: false
+
+- name: HAProxy - Disable redir
+  shell: echo "disable server back1/redir" | socat unix-connect:/var/run/haproxy/admin.sock stdio
+  become: true

@@ -18,7 +18,7 @@ def delayed_redirect(path):
             return 'Target is still offline after 5 minutes. Check the migration log and try again.'
         else:
             if monitor_target():
-                return redirect('http://34.87.40.120', code=302)
+                return redirect("http://34.87.40.120", code=302)
             else:
                 print time.time() - default_timer
                 continue
