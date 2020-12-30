@@ -1,6 +1,6 @@
 ---
 - name: Create mysql network namespace
-  script: ns.sh
+  script: netns.sh
   environment:
     NS: mysql
     VETH: vethmysql
@@ -12,7 +12,7 @@
   become: true
 
 - name: Create wordpress network namespace
-  script: ns.sh
+  script: netns.sh
   environment:
     NS: wordpress
     VETH: vethwordpress

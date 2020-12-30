@@ -18,3 +18,25 @@
   become: true
   async: 2629800
   poll: 0
+
+# - name: Start MySQL container
+#   shell: runc run -d mysql &>/dev/null </dev/null
+#   # shell: runc run -d mysql > ../mysql_logs.txt 2>&1
+#   args:
+#     chdir: /home/ubuntu/mysql
+#   become: true
+
+# - name: Start WordPress container
+#   shell: runc run -d wordpress &>/dev/null </dev/null
+#   # shell: runc run -d wordpress > ../wp_logs.txt 2>&1
+#   args:
+#     chdir: /home/ubuntu/wordpress
+#   become: true
+
+# - name: Reset HAProxy rule - Set source to UP
+#   shell: echo "enable server back1/source" | socat unix-connect:/var/run/haproxy/admin.sock stdio
+#   become: true
+
+# - name: Reset HAProxy rule - Set redir to DOWN
+#   shell: echo "disable server back1/redir" | socat unix-connect:/var/run/haproxy/admin.sock stdio
+#   become: true
