@@ -76,7 +76,7 @@
 
 # namespace
 - name: Create mysql network namespace
-  script: netns.sh
+  script: ns.sh
   environment:
     NS: mysql
     VETH: vethmysql

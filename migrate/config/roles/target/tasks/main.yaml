@@ -7,6 +7,10 @@
   command: rsync --daemon
   become: true
 
+- name: Pause for 5 seconds to build cache
+  pause:
+    seconds: 5
+
 - name: Execute migration target script
   shell: "./target.py {{ hostvars[source].private_address }} >> target-log"
   args:
