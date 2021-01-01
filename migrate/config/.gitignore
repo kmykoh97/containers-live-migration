@@ -1,0 +1,5 @@
+gcp.json
+.terraform
+hosts
+terraform.tfvars
+*.tfstate*
