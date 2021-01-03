@@ -2,7 +2,7 @@
 
 - name: Wait for target ({{ hostvars[target].public_address }}) to come up
   command: "curl -m 2 --silent {{ hostvars[target].public_address }}"
-  # register: result
+  register: result
   until: result.stdout.find("WordPress") != -1
   retries: 20
   delay: 2

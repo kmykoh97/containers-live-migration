@@ -38,7 +38,7 @@ resource "google_compute_address" "vpn" {
 
 resource "google_compute_instance" "host" {
   name         = "host2"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-1"
   allow_stopping_for_update = "TRUE"
 
   boot_disk {
@@ -57,7 +57,6 @@ resource "google_compute_instance" "host" {
 resource "google_compute_instance" "vpn" {
   name         = "vpn2"
   machine_type = "f1-micro"
-  allow_stopping_for_update = "TRUE"
 
   boot_disk {
     initialize_params {
