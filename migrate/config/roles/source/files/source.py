@@ -45,7 +45,7 @@ def predump(container):
   container_path = base_path + container
   old_cwd = os.getcwd()
   os.chdir(container_path)
-  cmd = 'runc checkpoint --ext-unix-sk --pre-dump --image-path ' + precopy_dir + ' ' + container
+  cmd = 'runc checkpoint --manage-cgroups-mode full --ext-unix-sk --pre-dump --image-path ' + precopy_dir + ' ' + container
   start = time.time()
   process = subprocess.Popen(cmd, shell=True)
   ret = process.wait()
@@ -63,7 +63,7 @@ def checkpoint((container, postcopy_port)):
   postcopy_pipe_path = postcopy_pipe_prefix + container
   old_cwd = os.getcwd()
   os.chdir(container_path)
-  cmd = 'runc checkpoint --ext-unix-sk'
+  cmd = 'runc checkpoint --manage-cgroups-mode full --ext-unix-sk'
   if precopy_enabled:
     cmd += ' --parent-path ' + precopy_relative_path
   if postcopy_enabled:

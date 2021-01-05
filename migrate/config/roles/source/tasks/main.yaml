@@ -3,9 +3,9 @@
   copy: src=source.py dest=/home/ubuntu/source.py owner=root group=root mode=0755
   become: true
 
-- name: Pause for 5 seconds to build cache
+- name: Pause for 3 seconds to build cache
   pause:
-    seconds: 5
+    seconds: 3
   
 # /run/runc/mysql/criu.work/dump.log
 - name: Migrate MySQL and WordPress
@@ -17,22 +17,22 @@
   become: true
   register: migration_result
 
-- name: Pause for 5 seconds to build cache
+- name: Pause for 3 seconds to build cache
   pause:
-    seconds: 5
+    seconds: 3
 
-# - name: Wait for target ({{ hostvars[target].private_address }}) to come up
-#   command: "curl -m 2 --silent {{ hostvars[target].private_address }}"
-#   register: result
-#   until: result.stdout.find("WordPress") != -1
-#   retries: 20
-#   delay: 1
-#   changed_when: false
-#   # warn: false
+- name: Wait for target ({{ hostvars[target].private_address }}) to come up
+  command: "curl -m 2 --silent {{ hostvars[target].private_address }}"
+  register: result
+  until: result.stdout.find("WordPress") != -1
+  retries: 20
+  delay: 1
+  changed_when: false
+  # warn: false
 
-# - name: HAProxy - Disable redir
-#   shell: echo "disable server back1/redir" | socat unix-connect:/var/run/haproxy/admin.sock stdio
-#   become: true
+- name: HAProxy - Disable redir
+  shell: echo "disable server back1/redir" | socat unix-connect:/var/run/haproxy/admin.sock stdio
+  become: true
 
 - name: Display migration result
   debug: var=migration_result.stdout_lines
