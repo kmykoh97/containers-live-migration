@@ -4,11 +4,15 @@
 #     repo: ppa:criu/ppa
 #   become: true
 
-- name: Install CRIU
-  apt:
-    update_cache: true
-    name: criu
-  become: true
+# - name: Install CRIU
+#   apt:
+#     update_cache: true
+#     name: criu
+#   become: true
+
+# due to cgroup issue in newer version of criu, we would need to compile older version ourselves
+- name: Execute shell script to install criu older version
+  script: install.sh
 
 - name: Create /etc/criu
   file:
