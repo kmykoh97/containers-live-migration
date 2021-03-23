@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # based on https://www.redhat.com/en/blog/container-migration-around-world
+# added --ext-unix-sk to track external unix socket
+
 import socket
 import sys
 from thread import *

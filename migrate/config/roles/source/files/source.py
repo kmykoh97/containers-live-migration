@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # based on https://www.redhat.com/en/blog/container-migration-around-world
 # implementation based on parallel migration in same end time
+# added --ext-unix-sk to track external unix socket
+
 import socket
 import sys
 import select

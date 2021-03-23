@@ -3,9 +3,9 @@
   copy: src=source.py dest=/home/ubuntu/source.py owner=root group=root mode=0755
   become: true
 
-- name: Pause for 3 seconds to build cache
-  pause:
-    seconds: 3
+# - name: Pause for 3 seconds to build cache
+#   pause:
+#     seconds: 3
   
 # /run/runc/mysql/criu.work/dump.log
 - name: Migrate MySQL and WordPress
@@ -17,9 +17,9 @@
   become: true
   register: migration_result
 
-- name: Pause for 3 seconds to build cache
-  pause:
-    seconds: 3
+# - name: Pause for 3 seconds to build cache
+#   pause:
+#     seconds: 3
 
 - name: Wait for target ({{ hostvars[target].private_address }}) to come up
   command: "curl -m 2 --silent {{ hostvars[target].private_address }}"
