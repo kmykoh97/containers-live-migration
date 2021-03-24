@@ -1,6 +1,6 @@
 [host]
-54.255.173.70 public_address=54.255.173.70 private_address=172.31.1.86 private_subnet=172.31.1.0/24
-34.87.107.79 public_address=34.87.107.79 private_address=10.0.1.3 private_subnet=10.0.1.0/24
+13.212.138.171 public_address=13.212.138.171 private_address=172.31.1.232 private_subnet=172.31.1.0/24
+34.87.97.66 public_address=34.87.97.66 private_address=10.0.1.2 private_subnet=10.0.1.0/24
 
 [host:vars]
 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
@@ -8,8 +8,8 @@ ansible_ssh_private_key_file=~/.ssh/id_rsa
 ansible_ssh_user=ubuntu
 
 [vpn]
-13.212.232.247 public_address=13.212.232.247 private_address=172.31.1.166 private_subnet=172.31.1.0/24
-34.87.97.66 public_address=34.87.97.66 private_address=10.0.1.2 private_subnet=10.0.1.0/24
+13.250.31.97 public_address=13.250.31.97 private_address=172.31.1.115 private_subnet=172.31.1.0/24
+34.87.107.79 public_address=34.87.107.79 private_address=10.0.1.3 private_subnet=10.0.1.0/24
 
 [vpn:vars]
 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
