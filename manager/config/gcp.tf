@@ -1,8 +1,8 @@
 provider "google" {
     project = "${var.gcp_project_id}"
     credentials = "${file(var.gcp_credentials_path)}"
-    region = "asia-southeast1"
-    zone = "asia-southeast1-a"
+    region = "us-central1"
+    zone = "us-central1-a"
 }
 
 resource "google_compute_project_metadata_item" "ssh_keys" {
@@ -56,7 +56,7 @@ resource "google_compute_instance" "host" {
 
 resource "google_compute_instance" "vpn" {
   name         = "vpn2"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-1"
 
   boot_disk {
     initialize_params {
